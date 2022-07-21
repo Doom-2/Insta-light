@@ -57,3 +57,6 @@ class TestPostDAO:
         post = post_dao.get_post_by_pk(1)
         assert post.pk == 1, "Wrong post has been returned"
         check_fields(post)
+
+    def test_search_for_posts(self, post_dao):
+        pass

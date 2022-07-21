@@ -7,7 +7,7 @@ class PostDAO:
         """ Creating a DAO instance, it is needed to specify the path to the JSON file """
         self.path = path
 
-    def load_data(self) -> list:
+    def load_data(self) -> list[Post]:
         """ Loads data from post instance and return a list"""
         with open(self.path, encoding="utf-8") as file:
             all_posts_data = json.load(file)
@@ -24,7 +24,7 @@ class PostDAO:
                 ))
         return all_posts_obj_list
 
-    def get_posts_all(self) -> list:
+    def get_posts_all(self) -> list[Post]:
         """ Returns a list with all instances of the class Post """
         all_posts = self.load_data()
         return all_posts
@@ -43,7 +43,6 @@ class PostDAO:
         pk_list = []
         for post in all_posts:
             pk_list.append(int(post.pk))
-        print(pk_list)
         return pk_list
 
     def get_posts_by_user(self, poster_name: str) -> list:
@@ -58,14 +57,16 @@ class PostDAO:
                 poster_posts.append(post)
         return poster_posts
 
-    def get_post_by_pk(self, pk: int) -> list:
+    def get_post_by_pk(self, pk: int) -> Post:
         """ Returns an instance of a specific post by its 'pk' field"""
         all_posts = self.get_posts_all()
+        if pk not in self.get_all_pk():
+            raise ValueError('Post does not exist')
         for post in all_posts:
             if post.pk == pk:
                 return post
 
-    def search_for_posts(self, query) -> list:
+    def search_for_posts(self, query: any) -> list[Post]:
         """ Returns a list of posts instances containing the 'query' request """
         all_posts = self.get_posts_all()
         query_posts = []

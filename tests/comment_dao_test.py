@@ -33,5 +33,3 @@ class TestCommentDAO:
         assert type(post_comments) == list, "Not a list has been returned"
         assert len(post_comments) > 0, "The post doesn't have any comments"
         check_fields(post_comments[0])
-        with pytest.raises(ValueError):
-            comment_dao.get_comments_by_post_id(1000)
