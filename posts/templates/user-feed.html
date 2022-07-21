@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKYPROGRAM user feed</title>
+    <title>{{ poster_name }} user feed</title>
     <link href="../../static/css/styles.min.css" rel="stylesheet">
 </head>
 
@@ -16,7 +16,7 @@
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#back"></use>
             </svg>
         </a>
-        <a href="/static" class="header__logo-link">
+        <a href="/users/{{ poster_name }}" class="header__logo-link">
             <svg class="header__logo" width="142" height="26">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#skypro"></use>
             </svg>
@@ -38,7 +38,7 @@
                 <a href="/posts/{{ user_post.pk }}" class="item__post-link">
                     <img src="{{ user_post.pic }}" alt="" width="348" class="item__post-img">
                 </a>
-                <p class="item__descr"><a href="#" class="item__tag">#food</a> {{ user_post.content[:50] }}...</p>
+                <p class="item__descr"> {{ user_post.content[:50] }}...</p>
                 <div class="item__post-info">
                     <div class="item__counter">
                         <img src="../../static/img/eye.png" alt="" class="item__counter-icon" width="26">

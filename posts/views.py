@@ -40,7 +40,7 @@ def page_user_feed(poster_name):
     except ValueError:
         logger_main.error(f'There is no user with name {poster_name}')
         return f'There is no user with name {poster_name}'
-    return render_template('user-feed.html', user_posts=user_posts)
+    return render_template('user-feed.html', user_posts=user_posts, poster_name=poster_name)
 
 
 # Creating a view for search post by query
