@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, abort
 
 from logs import logger_main
 from posts.post_dao import PostDAO
@@ -15,22 +15,13 @@ comment_dao = CommentDAO(COMMENTS_PATH)
 
 
 # Creating a view for one post
-@post_blueprint.get('/posts/<pk>/')
+@post_blueprint.get('/posts/<int:pk>/')
 def page_post(pk):
     logger_main.info('Opening a single post')
-    pk_list = post_dao.get_all_pk()
-
-    try:
-        int(pk)
-    except ValueError:
-        logger_main.error('Only int \'pk\' values is allowed')
-        return '<br><span style="margin-left:20px; color: blue;"><strong>Only int \'pk\' values is allowed</span>'
-    if int(pk) not in pk_list:
-        logger_main.error(f'Post with \'pk\' {pk} does not exist')
-        return f'<br><span style="margin-left:20px; color: red;"><strong>Post with \'pk\' {pk} does not exist</span>'
-
     comments = comment_dao.get_comments_by_post_id(int(pk))
-    post = post_dao.get_post_by_pk(int(pk))
+    post = post_dao.get_post_by_pk(pk)
+    if not post:
+        abort(404)
     bookmarks = load_bookmarks()
     return render_template('post.html', post=post, comments=comments, bookmarks=bookmarks)
 

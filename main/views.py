@@ -14,8 +14,7 @@ post_dao = PostDAO(POST_PATH)
 def page_index():
     logger_main.info('Loading a main page')
     all_posts = post_dao.get_posts_all()
-    try:
-        bookmarks = load_bookmarks()
-    except TypeError:
-        return '<br><span style="margin-left:20px; color: blue;"><strong>json file not a list</span>'
+    bookmarks = load_bookmarks()
+    if bookmarks is None:
+        return '<br>An error has occurred.<br><br>We\'ll fix it as soon as possible. Stay tuned!'
     return render_template('index.html', all_posts=all_posts, bookmarks=bookmarks)

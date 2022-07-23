@@ -1,4 +1,5 @@
 import json
+from typing import Optional
 from posts.post import Post
 from posts.utils import load_bookmarks, remove_html_tags
 
@@ -65,11 +66,9 @@ class PostDAO:
                 poster_posts.append(post)
         return poster_posts
 
-    def get_post_by_pk(self, pk: int) -> Post:
+    def get_post_by_pk(self, pk: int) -> Optional[Post]:
         """ Returns an instance of a specific post by its 'pk' field"""
         all_posts = self.get_posts_all()
-        if pk not in self.get_all_pk():
-            raise ValueError('Post does not exist')
         for post in all_posts:
             if post.pk == pk:
                 return post

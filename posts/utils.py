@@ -1,13 +1,12 @@
 import re
 import json
 from json import JSONDecodeError
-from logs import logger_main
 from settings import BOOKMARKS_PATH
+from logs import logger_main
 
 
 def _load_json(filename: str, encoding: str = 'utf-8') -> list:
     """ Reads json from file and returns a list """
-
     try:
         with open(filename, encoding=encoding) as f:
             return json.load(f)
