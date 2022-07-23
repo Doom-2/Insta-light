@@ -1,10 +1,11 @@
-from posts.post_dao import PostDAO
 import pytest
+from posts.post_dao import PostDAO
+from settings import POST_PATH
 
 
 @pytest.fixture()
 def post_dao():
-    post_dao_instance = PostDAO("./data/data.json")
+    post_dao_instance = PostDAO(POST_PATH)
     return post_dao_instance
 
 

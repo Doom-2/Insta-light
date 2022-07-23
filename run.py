@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from settings import logger_main
+from logs import logger_main
 
 # Importing a blueprints
 from main.views import main_blueprint
@@ -26,7 +26,7 @@ def page_not_found(error):
 @app.errorhandler(500)
 def internal_server_error(error):
     logger_main.error('500 Internal server error')
-    return render_template('500-InternalError.html')
+    return render_template('500-internal-error.html')
 
 
 # Starting the server only if the file is running and not imported

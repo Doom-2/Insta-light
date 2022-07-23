@@ -1,5 +1,6 @@
 import json
 from posts.post import Post
+from posts.utils import load_bookmarks, remove_html_tags
 
 
 class PostDAO:
@@ -25,8 +26,15 @@ class PostDAO:
         return all_posts_obj_list
 
     def get_posts_all(self) -> list[Post]:
-        """ Returns a list with all instances of the class Post """
+        """
+        Returns a list with all instances of the class Post
+        where field 'pure_content' has text without html tags
+        It is used to proper trim post's description
+        if it contains html tags in the first 50 characters
+        """
         all_posts = self.load_data()
+        for post in all_posts:
+            post.pure_content = remove_html_tags(post.content)
         return all_posts
 
     def get_all_posters(self) -> list:
@@ -51,7 +59,7 @@ class PostDAO:
             raise ValueError
 
         all_posts = self.get_posts_all()
-        poster_posts = []  # An empty list for posts instances of specific user
+        poster_posts = []
         for post in all_posts:
             if post.poster_name == poster_name:
                 poster_posts.append(post)
@@ -66,6 +74,16 @@ class PostDAO:
             if post.pk == pk:
                 return post
 
+    def get_post_by_tag(self, tag) -> list[Post]:
+        """ Returns a list of posts instances containing a specific tag"""
+        all_posts = self.get_posts_all()
+        tag_posts = []
+        for post in all_posts:
+            if tag in post.content:
+                tag_posts.append(post)
+                print(tag)
+        return tag_posts
+
     def search_for_posts(self, query: any) -> list[Post]:
         """ Returns a list of posts instances containing the 'query' request """
         all_posts = self.get_posts_all()
@@ -75,3 +93,13 @@ class PostDAO:
                 query_posts.append(post)
 
         return query_posts
+
+    def get_bookmarked_posts(self) -> list[Post]:
+        """ Returns a list of post instances that have been added to bookmarks """
+        all_posts = self.get_posts_all()
+        bookmarks = load_bookmarks()
+        bookmarked_posts = []
+        for post in all_posts:
+            if post.pk in bookmarks:
+                bookmarked_posts.append(post)
+        return bookmarked_posts

@@ -8,7 +8,8 @@ class Post:
                  pic='',
                  content='',
                  views_count=0,
-                 likes_count=0
+                 likes_count=0,
+                 pure_content=''
                  ):
         self.pk = pk
         self.poster_name = poster_name
@@ -17,6 +18,7 @@ class Post:
         self.content = content
         self.views_count = views_count
         self.likes_count = likes_count
+        self.pure_content = pure_content
 
     def __repr__(self):
         return f'Post from {self.poster_name}'

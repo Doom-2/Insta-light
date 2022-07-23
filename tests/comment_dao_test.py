@@ -1,10 +1,11 @@
-from posts.comment_dao import CommentDAO
 import pytest
+from posts.comment_dao import CommentDAO
+from settings import COMMENTS_PATH
 
 
 @pytest.fixture()
 def comment_dao():
-    comment_dao_instance = CommentDAO("./data/comments.json")
+    comment_dao_instance = CommentDAO(COMMENTS_PATH)
     return comment_dao_instance
 
 

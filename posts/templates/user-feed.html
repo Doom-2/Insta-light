@@ -38,7 +38,7 @@
                 <a href="/posts/{{ user_post.pk }}" class="item__post-link">
                     <img src="{{ user_post.pic }}" alt="" width="348" class="item__post-img">
                 </a>
-                <p class="item__descr"> {{ user_post.content[:50] }}...</p>
+                <p class="item__descr"> {{ user_post.pure_content[:50] }}...</p>
                 <div class="item__post-info">
                     <div class="item__counter">
                         <img src="../../static/img/eye.png" alt="" class="item__counter-icon" width="26">
@@ -47,9 +47,17 @@
                 </div>
                 <div class="item__post-bottom">
                     <a href="/posts/{{ user_post.pk }}/" class="item__btn-more">Подробнее</a>
-                    <button type="button" class="item__bookmark-btn">
-                        <img src="../../static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
-                    </button>
+                    {% if user_post.pk not in bookmarks %}
+                        <button type="button" class="item__bookmark-btn"
+                                onclick="window.location='/bookmarks/add/{{ user_post.pk }}'">
+                            <img src="../../static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
+                        </button>
+                    {% else %}
+                        <button type="button" class="item__bookmark-btn-pressed"
+                                onclick="window.location='/bookmarks/remove/{{ user_post.pk }}'">
+                            <img src="../../static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
+                        </button>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}

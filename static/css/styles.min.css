@@ -425,9 +425,25 @@ textarea {
     transition: all 0.5s linear
 }
 
+.item__bookmark-btn-pressed {
+    padding: 0;
+    padding-top: 6px;
+    border: none;
+    outline: none;
+    background: none;
+    box-shadow: none;
+    opacity: 1;
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear
+}
+
 .item__bookmark-btn.active,
 .item__bookmark-btn:hover {
     opacity: 1
+}
+
+.item__bookmark-btn-pressed:hover {
+    opacity: 0.2
 }
 
 .item__top .item__bookmark-btn {
