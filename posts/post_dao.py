@@ -41,18 +41,12 @@ class PostDAO:
     def get_all_posters(self) -> list:
         """ Returns a list of all users """
         all_posts = self.get_posts_all()
-        posters_list = []
-        for post in all_posts:
-            posters_list.append(post.poster_name)
-        return posters_list
+        return [post.poster_name for post in all_posts]
 
     def get_all_pk(self) -> list:
         """ Returns a list of all post's pk """
         all_posts = self.get_posts_all()
-        pk_list = []
-        for post in all_posts:
-            pk_list.append(int(post.pk))
-        return pk_list
+        return [post.pk for post in all_posts]
 
     def get_posts_by_user(self, poster_name: str) -> list:
         """ Returns a list of posts instances of a specific poster by its 'poster_name' field"""
@@ -60,11 +54,7 @@ class PostDAO:
             raise ValueError
 
         all_posts = self.get_posts_all()
-        poster_posts = []
-        for post in all_posts:
-            if post.poster_name == poster_name:
-                poster_posts.append(post)
-        return poster_posts
+        return [post for post in all_posts if post.poster_name == poster_name]
 
     def get_post_by_pk(self, pk: int) -> Optional[Post]:
         """ Returns an instance of a specific post by its 'pk' field"""
@@ -76,29 +66,15 @@ class PostDAO:
     def get_post_by_tag(self, tag) -> list[Post]:
         """ Returns a list of posts instances containing a specific tag"""
         all_posts = self.get_posts_all()
-        tag_posts = []
-        for post in all_posts:
-            if tag in post.content:
-                tag_posts.append(post)
-                print(tag)
-        return tag_posts
+        return [post for post in all_posts if tag in post.content]
 
     def search_for_posts(self, query: any) -> list[Post]:
         """ Returns a list of posts instances containing the 'query' request """
         all_posts = self.get_posts_all()
-        query_posts = []
-        for post in all_posts:
-            if query.lower() in post.content.lower():
-                query_posts.append(post)
-
-        return query_posts
+        return [post for post in all_posts if query.lower() in post.content.lower()]
 
     def get_bookmarked_posts(self) -> list[Post]:
         """ Returns a list of post instances that have been added to bookmarks """
         all_posts = self.get_posts_all()
         bookmarks = load_bookmarks()
-        bookmarked_posts = []
-        for post in all_posts:
-            if post.pk in bookmarks:
-                bookmarked_posts.append(post)
-        return bookmarked_posts
+        return [post for post in all_posts if post.pk in bookmarks]

@@ -24,8 +24,4 @@ class CommentDAO:
     def get_comments_by_post_id(self, post_id: int) -> list:
         """ Returns a list of comments of a specific post by its 'post_id' field """
         all_comments = self.load_data()
-        post_comments = []  # An empty list for all comments on a specific post
-        for comment in all_comments:
-            if comment.post_id == post_id:
-                post_comments.append(comment)
-        return post_comments
+        return [comment for comment in all_comments if comment.post_id == post_id]
