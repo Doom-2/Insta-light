@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  api:
+    image: doom2/insta-light:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "4000:4000"

@@ -31,4 +31,4 @@ def internal_server_error(error):
 
 # Starting the server only if the file is running and not imported
 if __name__ == "__main__":
-    app.run()
+    app.run(host="localhost", port=4000)
