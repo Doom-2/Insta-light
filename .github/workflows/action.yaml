@@ -21,8 +21,8 @@ jobs:
     steps:
       - name: clone code
         uses: actions/checkout@v2
-      - name: convert secrets to env
-        uses: shine1594/-action@master
+      - name: secrets to env
+        uses: shine1594/secrets-to-env-action@v1.6.1
         with:
           secrets: ${{ toJSON(secrets) }}
           secrets_env: all
