@@ -1,4 +1,4 @@
-name: CI
+name: Build and deploy workwlow
 on: [push]
 jobs:
   build_and_push:
@@ -22,24 +22,22 @@ jobs:
       - name: clone code
         uses: actions/checkout@v2
       - name: render config
-        run:  cat Dockerfile | envsubst '$GITHUB_REF_NAME, $GITHUB_RUN_ID' > deploy/Dockerfile
-      - name: copy files to server
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          source: "deploy/*"
-          target: "Insta-light"
-          strip_components: 1
-      - name: deploy app
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          script: |
-            cd Insta-light
-            docker build -t ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID 
-            docker run -p 4000:4000 -d ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID
-
+        run:  cat docker-compose-ci.yaml | envsubst '$GITHUB_REF_NAME, $GITHUB_RUN_ID' > deploy/docker-compose.yaml
+#      - name: copy files to server
+#        uses: appleboy/scp-action@master
+#        with:
+#          host: ${{ secrets.HOST }}
+#          username: ${{ secrets.USERNAME }}
+#          key: ${{ secrets.KEY }}
+#          source: "deploy/*"
+#          target: "Insta-light"
+#          strip_components: 1
+#      - name: deploy app
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{ secrets.HOST }}
+#          username: ${{ secrets.USERNAME }}
+#          key: ${{ secrets.KEY }}
+#          script: |
+#            cd Insta-light
+#            docker compose up -d
