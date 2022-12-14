@@ -21,11 +21,8 @@ jobs:
     steps:
       - name: clone code
         uses: actions/checkout@v2
-      - name: secrets to env
-        uses: shine1594/secrets-to-env-action@v1.6.1
-        with:
-          secrets: ${{ toJSON(secrets) }}
-          secrets_env: all
+      - name: secrets-to-env-action
+        uses: oNaiPs/secrets-to-env-action@v1
       - name: render config
         run:  cat docker-compose-ci.yaml | envsubst '$DOCKER_USER, '$REPO_NAME, '$GITHUB_REF_NAME, $GITHUB_RUN_ID' > deploy/docker-compose.yaml
       - name: copy files to server
