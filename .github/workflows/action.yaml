@@ -21,10 +21,10 @@ jobs:
     steps:
       - name: clone code
         uses: actions/checkout@v2
-      - name: convert secrets to env
       - uses: oNaiPs/secrets-to-env-action@v1
         with:
           secrets: ${{ toJSON(secrets) }}
+      - run: echo "Value of MY_SECRET1: $MY_SECRET1"
       - name: render config
         run:  cat docker-compose-ci.yaml | envsubst '$DOCKER_USER, '$REPO_NAME, '$GITHUB_REF_NAME, $GITHUB_RUN_ID' > deploy/docker-compose.yaml
       - name: copy files to server
