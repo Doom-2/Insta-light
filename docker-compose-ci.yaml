@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   api:
-    image: ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    image: $DOCKER_USER/$REPO_NAME:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     restart: always
     ports:
       - "4000:4000"
