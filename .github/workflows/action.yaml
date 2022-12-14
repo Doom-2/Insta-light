@@ -40,5 +40,5 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             cd Insta-light
-            docker run -p 4000:4000 -d  ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+            docker run -p 4000:4000 -d ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID
 
