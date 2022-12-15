@@ -1,20 +1,20 @@
-# Курсовая работа 3
+# Insta light
 
-Реализованы основные шаги, задания со звездочкой.
-Добавлен полезный функционал:
-- Ошибки 404 и 500 загружаются из шаблонов (html + css).
+### Instagram-style Flask application with frontend & backend (running with Gunicorn).
 
-- Созданы 2 логгера: loger_api для функционала api, loger_main для всего остального.
+Features:
+ - post list view
+ - single post view
+ - clickable images and buttons
+ - filtering posts by tag, author, and entered text
+ - jinja2 template engine
+ - bookmarks
 
-- Если теги встречаются в начале поста и попадают в его описание, то для корректной обрезки первых 50 символов и не отображения <a href...
-  из строки удаляются html теги с помощью регулярных выражений,а полученная строка добавляется в поле pure_content класса Post.
-  Это поле используется в шаблонах, где краткое описание при том, что поле content выводит теги как ссылки с помощью фильтра safe модуля jinja2.
-  
-- Добавление поста в закладки: если пост не добавлен в закладки, значок прозрачный (нужное свойство css для кнопки есть в исходниках),
-  при добавлении поста в закладки значок становиться непрозрачным, также работает CSS псевдокласс :hover, при наведении курсора мыши
-  на кнопку закладки она становиться прозрачной/непрозрачной в зависимости от текущего состояния.
-  
-- После удаления поста из закладкок происходит переадресация на главную страницу с любой страницы, кроме страницы закладок.
-  При нажатии на 'Удалить' открывается та же станица закладок для удобства дальнейшего чтения постов.
-  Если последний пост удаляется из закладок идет переадресация на главную страницу.
-  Реализовано с помощью 2-х разных декораторов функции remove_from_bookmark().
+Details:
+- loggers for api and frontend
+- HTTP 404 Not Found, HTTP 500 Internal Server Error page templates
+- correct display of hash tags in short post descriptions using regular expressions (html-tags exclusion mechanism)
+- changeable style of the bookmark icon: transparent and vice versa, including mouse hover events
+- redirect to homepage after deleting the last bookmark from the bookmark page
+- contenerizing with Docker
+- deploying with GitHub Actions
