@@ -2,10 +2,15 @@ version: "3.9"
 
 services:
   api:
-    image: ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+#    image: ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     build:
       context: .
       dockerfile: Dockerfile
     restart: always
     ports:
       - "4000:4000"
+    healthcheck:
+      test: curl -s$ http://158.160.37.55:4000/ping/ || exit 1
+      interval: 15s
+      timeout: 5s
+      retries: 5

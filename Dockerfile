@@ -19,5 +19,3 @@ RUN python3 -m pip install --no-cache -r requirements.txt
 COPY . .
 
 CMD gunicorn --config gunicorn.conf.py run:app
-
-EXPOSE 4000
