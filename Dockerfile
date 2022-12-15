@@ -1,7 +1,7 @@
 
 FROM python:3.10-slim
 
-ENV HOME /Coursework_3
+ENV HOME /
 
 WORKDIR $HOME
 
