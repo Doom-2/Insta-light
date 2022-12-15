@@ -8,7 +8,7 @@ COMMENTS_PATH = "./data/comments.json"
 BOOKMARKS_PATH = "./data/bookmarks.json"
 
 # Path to api log file
-API_LOG_PATH = "./log/api.log"
+API_LOG_PATH = "log/api.log"
 
 # Path to the main log file
-MAIN_LOG_PATH = "./log/main.log"
+MAIN_LOG_PATH = "log/main.log"
