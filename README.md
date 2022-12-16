@@ -1,6 +1,7 @@
 # Insta light
 
 ### Instagram-style Flask application with frontend & backend (running with Gunicorn).
+[insta-light.ga](http://insta-light.ga)
 
 Features:
  - post list view
