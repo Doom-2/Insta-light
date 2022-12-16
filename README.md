@@ -19,4 +19,4 @@ Details:
 - contenerizing with Docker
 - deploying with GitHub Actions
 
-[Insta light.webm](https://user-images.githubusercontent.com/106608272/207999450-ba85545b-5dac-4980-be9b-0904ce40f7b4.webm)
+![Insta light](https://user-images.githubusercontent.com/106608272/208000166-77d9e37d-6fa9-42d8-877b-ead4d1300b67.gif)
