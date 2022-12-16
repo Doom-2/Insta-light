@@ -15,8 +15,8 @@ Details:
 - running with Gunicorn
 - loggers for api and frontend
 - HTTP 404 Not Found, HTTP 500 Internal Server Error page templates
-- correct display of hash tags in short post descriptions using regular expressions (html-tags exclusion mechanism)
-- changeable style of the bookmark icon: transparent and vice versa, including mouse hover events
+- correct display of hash tags in short post descriptions using re (html-tags exclusion mechanism)
+- changeable style of the bookmark icon: transparent and vice versa, including mouse hover
 - redirect to homepage after deleting the last bookmark from the bookmark page
 - deploying with GitHub Actions
 - contenerizing with Docker
