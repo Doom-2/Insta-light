@@ -47,4 +47,4 @@ jobs:
           script: |
             cd Insta-light
             docker system prune -f
-            docker run --name ${{ secrets.REPO_NAME }} -p 4000:4000/tcp -it -d ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+            docker run --name ${{ secrets.REPO_NAME }} -p 4000:4000/tcp -it -d ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:main-3713412603
