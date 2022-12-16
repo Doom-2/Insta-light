@@ -1,4 +1,4 @@
-name: Build and deploy workwlow
+name: Build and deploy workflow
 on: [push]
 jobs:
   build_and_push:
@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: clone code
         uses: actions/checkout@v2
+      - name: print the latest image tag
+        run: echo The latest image tag is $GITHUB_REF_NAME-$GITHUB_RUN_ID
       - name: deploy app
         uses: appleboy/ssh-action@master
         env:
