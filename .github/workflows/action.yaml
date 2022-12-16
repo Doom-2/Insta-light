@@ -40,11 +40,15 @@ jobs:
 #          strip_components: 1
       - name: deploy app
         uses: appleboy/ssh-action@master
+        env:
+          GITHUB_REF_NAME: $GITHUB_REF_NAME
+          GITHUB_RUN_ID: $GITHUB_RUN_ID
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
+          envs: GITHUB_REF_NAME, GITHUB_RUN_ID
           script: |
             cd Insta-light
             docker system prune -f
-            docker run --name ${{ secrets.REPO_NAME }} -p 4000:4000/tcp -it -d ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:main-3713412603
+            docker run --name ${{ secrets.REPO_NAME }} -p 4000:4000/tcp -it -d ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID
