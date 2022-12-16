@@ -5,3 +5,5 @@ env/
 .pytest_cache
 log/api.log
 log/main.log
+readme_md_content
+.github/workflows/action.yaml_bak
