@@ -7,3 +7,6 @@ log/api.log
 log/main.log
 readme_md_content
 .github/workflows/action.yaml_bak
+deploy
+docker-compose.yaml
+docker-compose-ci.yaml
