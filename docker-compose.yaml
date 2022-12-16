@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   api:
-#    image: ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    image: ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     build:
       context: .
       dockerfile: Dockerfile

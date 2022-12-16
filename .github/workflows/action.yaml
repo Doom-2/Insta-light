@@ -21,22 +21,23 @@ jobs:
     steps:
       - name: clone code
         uses: actions/checkout@v2
-      - name: secrets-to-env-action
-        uses: oNaiPs/secrets-to-env-action@v1
-        with:
-          secrets: ${{ toJSON(secrets) }}
-      - run: echo "Value of DOCKER_USER $DOCKER_USER"
-      - name: render config
-        run:  cat docker-compose-ci.yaml | envsubst '$DOCKER_USER, $REPO_NAME, $GITHUB_REF_NAME, $GITHUB_RUN_ID' > deploy/docker-compose.yaml
-      - name: copy files to server
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          source: "deploy/*"
-          target: "Insta-light"
-          strip_components: 1
+#      - name: secrets-to-env-action
+#        uses: oNaiPs/secrets-to-env-action@v1
+#        with:
+#          secrets: ${{ toJSON(secrets) }}
+#          convert: lower
+#      - run: echo "Value of DOCKER_USER $DOCKER_USER"
+#      - name: render config
+#        run:  cat docker-compose-ci.yaml | envsubst '$DOCKER_USER, $REPO_NAME, $GITHUB_REF_NAME, $GITHUB_RUN_ID' > deploy/docker-compose.yaml
+#      - name: copy files to server
+#        uses: appleboy/scp-action@master
+#        with:
+#          host: ${{ secrets.HOST }}
+#          username: ${{ secrets.USERNAME }}
+#          key: ${{ secrets.KEY }}
+#          source: "deploy/*"
+#          target: "Insta-light"
+#          strip_components: 1
       - name: deploy app
         uses: appleboy/ssh-action@master
         with:
@@ -45,4 +46,5 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             cd Insta-light
-            docker compose up -d
+            docker system prune -f
+            docker run --name ${{ secrets.REPO_NAME }} -p 158.160.37.55:4000:4000/tcp -it -d ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID
