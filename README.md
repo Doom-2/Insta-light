@@ -18,3 +18,5 @@ Details:
 - redirect to homepage after deleting the last bookmark from the bookmark page
 - contenerizing with Docker
 - deploying with GitHub Actions
+
+[Insta light.webm](https://user-images.githubusercontent.com/106608272/207999450-ba85545b-5dac-4980-be9b-0904ce40f7b4.webm)
