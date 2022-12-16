@@ -1,6 +1,6 @@
 # Insta light
 
-### Instagram-style Flask application with frontend & backend (running with Gunicorn).
+### Instagram-style Flask application with frontend & backend
 [insta-light.ga](http://insta-light.ga)
 
 Features:
@@ -12,12 +12,13 @@ Features:
  - bookmarks
 
 Details:
+- running with Gunicorn
 - loggers for api and frontend
 - HTTP 404 Not Found, HTTP 500 Internal Server Error page templates
 - correct display of hash tags in short post descriptions using regular expressions (html-tags exclusion mechanism)
 - changeable style of the bookmark icon: transparent and vice versa, including mouse hover events
 - redirect to homepage after deleting the last bookmark from the bookmark page
-- contenerizing with Docker
 - deploying with GitHub Actions
+- contenerizing with Docker
 
 ![Insta light](https://user-images.githubusercontent.com/106608272/208000166-77d9e37d-6fa9-42d8-877b-ead4d1300b67.gif)
