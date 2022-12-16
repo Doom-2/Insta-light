@@ -51,3 +51,4 @@ jobs:
           script: |
             docker rm -f ${{ secrets.REPO_NAME }}
             docker run --name ${{ secrets.REPO_NAME }} -p 4000:4000/tcp -it -d ${{ secrets.DOCKER_USER }}/${{ secrets.REPO_NAME }}:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+            
