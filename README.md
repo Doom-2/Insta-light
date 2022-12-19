@@ -18,6 +18,7 @@ Details:
 - correct display of hash tags in short post descriptions using re (html-tags exclusion mechanism)
 - changeable style of the bookmark icon: transparent and vice versa, including mouse hover
 - redirect to homepage after deleting the last bookmark from the bookmark page
+- unit testing for api and dao levels with pytest
 - deploying with GitHub Actions
 - contenerizing with Docker
 
